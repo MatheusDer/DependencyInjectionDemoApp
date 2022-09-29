@@ -1,11 +1,15 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using DependencyInjectionDemo.Logic;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+builder.Services.AddTransient<DemoLogic>(); //gets a new instance every time u ask for it  
+//builder.Services.AddSingleton<DemoLogic>(); //gets the same instance every time u ask for it
+//builder.Services.AddScoped<DemoLogic>(); //get the same instance for the same client every time u ask for it
 
 var app = builder.Build();
 

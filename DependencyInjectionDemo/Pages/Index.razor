@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using DependencyInjectionDemo.Logic
+@inject DemoLogic logic
 
 <PageTitle>Index</PageTitle>
 
@@ -9,12 +10,3 @@
 <h3>
     Value2: @logic.Value2
 </h3>
-
-@code {
-    private DemoLogic logic;
-
-    protected override void OnInitialized()
-    {
-        logic = new();
-    }
-}
