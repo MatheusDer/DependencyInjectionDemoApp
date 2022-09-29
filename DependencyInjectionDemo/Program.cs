@@ -7,9 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddTransient<DemoLogic>(); //gets a new instance every time u ask for it  
-//builder.Services.AddSingleton<DemoLogic>(); //gets the same instance every time u ask for it
-//builder.Services.AddScoped<DemoLogic>(); //get the same instance for the same client every time u ask for it
+builder.Services.AddTransient<IDemoLogic, DemoLogic>(); //Increase testability
+//builder.Services.AddTransient<IDemoLogic, BetterDemoLogic>(); //Easy to change the dependency
 
 var app = builder.Build();
 
