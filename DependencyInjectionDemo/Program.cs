@@ -1,14 +1,19 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using DependencyInjectionDemo.Logic;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddTransient<IDemoLogic, DemoLogic>(); //Increase testability
-//builder.Services.AddTransient<IDemoLogic, BetterDemoLogic>(); //Easy to change the dependency
+builder.Services.AddTransient<IDemoLogic, DemoLogic>();
+
+builder.Host.UseSerilog((context, config) =>
+{
+    config.WriteTo.Console();
+}); //using serilog instead of the default Microsoft logging implementation
 
 var app = builder.Build();
 
